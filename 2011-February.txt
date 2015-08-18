@@ -1,0 +1,227 @@
+From zaimoni at zaimoni.com  Tue Feb  8 13:17:51 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Tue, 08 Feb 2011 06:17:51 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>	<4BC10692.4060404@zaimoni.com>	<4D3C965A.4030607@zaimoni.com>	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>	<4D3D06BF.7040609@zaimoni.com>
+	<AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>
+Message-ID: <4D51346F.9060607@zaimoni.com>
+
+On 1/25/2011 11:42 PM, asm warrior wrote:
+> ....
+>
+> BTW:
+> The most difficult of parsing a c++ I think is the semantic check.
+Agreed.
+> Once I understand how to build it under mingw, I will try it soon. thanks.
+I just pushed in some progress on making this simpler.  Starting with 
+SVN revision 611,  adjusting the INSTALL_TO macro became optional.  This 
+change didn't make Z.C++ 0.0.7 as it's a stage-one task (new features).  
+(My first pass at making *defining* this macro optional, botched.)
+
+For a working debug-mode binary with the options I use for development, 
+it should suffice to use (GNU) make from within the SVN checkout 
+directory with MingW32 GCC 3.4.x/4.3.x .
+
+Kenneth
+
+
+From asmwarrior at gmail.com  Tue Feb  8 13:55:39 2011
+From: asmwarrior at gmail.com (asmwarrior)
+Date: Tue, 08 Feb 2011 20:55:39 +0800
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4D51346F.9060607@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>	<4BC10692.4060404@zaimoni.com>	<4D3C965A.4030607@zaimoni.com>	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>	<4D3D06BF.7040609@zaimoni.com>	<AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>
+	<4D51346F.9060607@zaimoni.com>
+Message-ID: <4D513D4B.3070108@gmail.com>
+
+On 2011-2-8 20:17, Kenneth Boyd wrote:
+>> Once I understand how to build it under mingw, I will try it soon. 
+>> thanks.
+> I just pushed in some progress on making this simpler.  Starting with 
+> SVN revision 611,  adjusting the INSTALL_TO macro became optional.  
+> This change didn't make Z.C++ 0.0.7 as it's a stage-one task (new 
+> features).  (My first pass at making *defining* this macro optional, 
+> botched.) 
+Hi, thanks for your information.
+I'm sorry I can't understand this sentence.
+I know the 0.0.7 version was just released several days ago. thanks for 
+your hard work.
+Is there any step by step instructions to teach me to build under MinGW?
+
+BTW:
+I have collect a lot of MinGW packages, see my wiki page:
+
+http://en.wikipedia.org/wiki/User:Ollydbg
+
+
+asmwarrior
+ollydbg from codeblocks' forum
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110208/51e00e53/attachment.html>
+
+From zaimoni at zaimoni.com  Tue Feb  8 19:02:12 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Tue, 08 Feb 2011 12:02:12 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4D513D4B.3070108@gmail.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>	<4BC10692.4060404@zaimoni.com>	<4D3C965A.4030607@zaimoni.com>	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>	<4D3D06BF.7040609@zaimoni.com>	<AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>	<4D51346F.9060607@zaimoni.com>
+	<4D513D4B.3070108@gmail.com>
+Message-ID: <4D518524.2030704@zaimoni.com>
+
+On 2/8/2011 6:55 AM, asmwarrior wrote:
+> On 2011-2-8 20:17, Kenneth Boyd wrote:
+>>> Once I understand how to build it under mingw, I will try it soon. 
+>>> thanks.
+>> I just pushed in some progress on making this simpler.  Starting with 
+>> SVN revision 611,  adjusting the INSTALL_TO macro became optional.  
+>> This change didn't make Z.C++ 0.0.7 as it's a stage-one task (new 
+>> features).  (My first pass at making *defining* this macro optional, 
+>> botched.) 
+> Hi, thanks for your information.
+> I'm sorry I can't understand this sentence.
+> I know the 0.0.7 version was just released several days ago. thanks 
+> for your hard work.
+> Is there any step by step instructions to teach me to build under MinGW?
+Well...what goes wrong when you try this (with GNU make as make.exe, and 
+MingW32 GCC 4.3.3 or 3.4.5 as gcc.exe)?
+
+Build:
+svn checkout http://svn.berlios.de/zcplusplus/trunk zcplusplus
+cd zcplusplus
+make
+
+Test:
+sh
+cd tests/cpp
+./run_tests.sh
+cd ../zcc
+./run_tests.sh
+
+(The above should be equivalent to the instructions on the home page.)
+
+First line in the build section is from the Berlios.de anonymous 
+checkout instructions.  (I'm hoping that the reason I had to substitute 
+developer checkout is that I'm a registered developer for Z.C++.)
+
+Kenneth
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110208/236ba859/attachment.html>
+
+From asmwarrior at gmail.com  Sun Feb 13 15:00:55 2011
+From: asmwarrior at gmail.com (asmwarrior)
+Date: Sun, 13 Feb 2011 22:00:55 +0800
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4D518524.2030704@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>	<4BC10692.4060404@zaimoni.com>	<4D3C965A.4030607@zaimoni.com>	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>	<4D3D06BF.7040609@zaimoni.com>	<AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>	<4D51346F.9060607@zaimoni.com>	<4D513D4B.3070108@gmail.com>
+	<4D518524.2030704@zaimoni.com>
+Message-ID: <4D57E417.9070101@gmail.com>
+
+On 2011-2-9 2:02, Kenneth Boyd wrote:
+> On 2/8/2011 6:55 AM, asmwarrior wrote:
+>> On 2011-2-8 20:17, Kenneth Boyd wrote:
+>>>> Once I understand how to build it under mingw, I will try it soon. 
+>>>> thanks.
+>>> I just pushed in some progress on making this simpler.  Starting 
+>>> with SVN revision 611,  adjusting the INSTALL_TO macro became 
+>>> optional.  This change didn't make Z.C++ 0.0.7 as it's a stage-one 
+>>> task (new features).  (My first pass at making *defining* this macro 
+>>> optional, botched.) 
+>> Hi, thanks for your information.
+>> I'm sorry I can't understand this sentence.
+>> I know the 0.0.7 version was just released several days ago. thanks 
+>> for your hard work.
+>> Is there any step by step instructions to teach me to build under MinGW?
+> Well...what goes wrong when you try this (with GNU make as make.exe, 
+> and MingW32 GCC 4.3.3 or 3.4.5 as gcc.exe)?
+>
+thanks for the reply.
+currently, I haven't tried to build zplusplus, because I have only 
+MinGW4.4.5 or MinGW 4.5.x.
+It seems zc++ need a lower version of mingw gcc, which is a bit weird.
+I will try to build it if I got some time.thanks.
+
+> Build:
+> svn checkout http://svn.berlios.de/zcplusplus/trunk zcplusplus
+> cd zcplusplus
+> make
+>
+> Test:
+> sh
+> cd tests/cpp
+> ./run_tests.sh
+> cd ../zcc
+> ./run_tests.sh
+>
+> (The above should be equivalent to the instructions on the home page.)
+>
+> First line in the build section is from the Berlios.de anonymous 
+> checkout instructions.  (I'm hoping that the reason I had to 
+> substitute developer checkout is that I'm a registered developer for 
+> Z.C++.)
+>
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110213/2bf9bd65/attachment.html>
+
+From zaimoni at zaimoni.com  Sun Feb 13 18:42:12 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Sun, 13 Feb 2011 11:42:12 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4D57E417.9070101@gmail.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>	<4BC10692.4060404@zaimoni.com>	<4D3C965A.4030607@zaimoni.com>	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>	<4D3D06BF.7040609@zaimoni.com>	<AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>	<4D51346F.9060607@zaimoni.com>	<4D513D4B.3070108@gmail.com>
+	<4D518524.2030704@zaimoni.com> <4D57E417.9070101@gmail.com>
+Message-ID: <4D5817F4.2030502@zaimoni.com>
+
+On 2/13/2011 8:00 AM, asmwarrior wrote:
+> On 2011-2-9 2:02, Kenneth Boyd wrote:
+>> On 2/8/2011 6:55 AM, asmwarrior wrote:
+>>> On 2011-2-8 20:17, Kenneth Boyd wrote:
+>>>>> Once I understand how to build it under mingw, I will try it soon. 
+>>>>> thanks.
+>>>> I just pushed in some progress on making this simpler.  Starting 
+>>>> with SVN revision 611,  adjusting the INSTALL_TO macro became 
+>>>> optional.  This change didn't make Z.C++ 0.0.7 as it's a stage-one 
+>>>> task (new features).  (My first pass at making *defining* this 
+>>>> macro optional, botched.) 
+>>> Hi, thanks for your information.
+>>> I'm sorry I can't understand this sentence.
+>>> I know the 0.0.7 version was just released several days ago. thanks 
+>>> for your hard work.
+>>> Is there any step by step instructions to teach me to build under MinGW?
+>> Well...what goes wrong when you try this (with GNU make as make.exe, 
+>> and MingW32 GCC 4.3.3 or 3.4.5 as gcc.exe)?
+>>
+> thanks for the reply.
+> currently, I haven't tried to build zplusplus, because I have only 
+> MinGW4.4.5 or MinGW 4.5.x.
+> It seems zc++ need a lower version of mingw gcc, which is a bit weird.
+
+Yes, it is a bit weird.  To be specific, I've tested against the 
+following MingW32's in 32-bit mode
+* official 3.4.5 (works)
+* official 4.2.1 (works)
+* TDM 4.3.3 (works for Z.C++, ICE's on another internal project)
+* official 4.4.0 (generates invalid assembly for both Z.C++ 
+[Zaimoni.STL/Core.RAM/memory.cpp and Zaimoni.STL/Pure.C/format.c both 
+affected, may be other files affected], libjpeg, and libpng)
+* TDM 4.4.1 (generates invalid assembly for both Z.C++ 
+[Zaimoni.STL/Core.RAM/memory.cpp and Zaimoni.STL/Pure.C/format.c both 
+affected, may be other files affected], libjpeg, and libpng)
+* official 4.5.0 (generates invalid assumbly for both Z.C++ 
+[Zaimoni.STL/Core.RAM/memory.cpp and Zaimoni.STL/Pure.C/format.c both 
+affected, may be other files affected], libjpeg, and libpng)
+
+I just rechecked...there is a official 4.5.2 release so I should take a 
+look at that.
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110213/9014ab01/attachment.html>
+

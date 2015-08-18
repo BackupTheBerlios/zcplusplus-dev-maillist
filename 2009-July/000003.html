@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: July 18, 2009
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20July%2018%2C%202009&In-Reply-To=%3C4A629734.2050700%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: July 18, 2009</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20July%2018%2C%202009&In-Reply-To=%3C4A629734.2050700%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: July 18, 2009">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Sun Jul 19 05:47:00 CEST 2009</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To All Whom It May Concern,
+
+Z.C++ is in stage 1 (New features, etc.)
+
+The following informal target features have been implemented:
+* Rewrite of type_spec in ParseTree.hpp to fully represent 
+cv-qualification with n levels of pointer indirection.
+* Proper parsing of typedefs of simple types (no pointers, function 
+types, etc.)  This fulfils parsing the typedefs in stddef.h/cstddef and 
+stdint.h/cstdint .
+
+The following changes are plausible for the next week
+* Test cases and elementary errors/warnings for simple declarations and 
+typedefs.
+* Start test case sets for preprocessor arithmetic targeting 
+no-padding-bits platforms (need six sets: axis trapping/no-trapping 
+integer math, and axis two's complement/one's complement/sign-magnitude 
+signed integers)
+
+Mostly copied from four weeks ago:
+Test case sets that would be good to have in time for the Z.C++ 0.0.2 
+release
+* z_cpp: Spot checks of arithmetic corner cases. This should at least 
+cover the two's complement/one's complement/sign-magnitude axis and 
+whether trap representations trap.
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+
+Informal target features for Z.C++ 0.0.2 that remain:
+* Make INT_MIN work in integer constant expressions. (not easy, but 
+relatively high priority; requires pseudorandom regression test driver)
+* source-code reductions for some easy cases. sizeof operator and strlen 
+function on string literals come to mind, but a systematic review is in 
+order. (May reduce scope if schedule slides)
+* handle target CHAR_BIT!= host CHAR_BIT (may ditch this if schedule slides)
+* cross-platform floating point arithmetic emulation (may ditch this if 
+schedule slides)
+
+Feature creep is not scheduled yet. Possible targets of feature creep 
+include
+* checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* starting work on Fortran 66 support.  (Why Fortran 66?  To make it 
+easier to understand where Fortran 77 is coming from.)
+* Build a catalog of exotic hardware features to handle in z_cpp.
+
+Best Regards,
+Kenneth Boyd
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3">[ date ]</a>
+              <a href="thread.html#3">[ thread ]</a>
+              <a href="subject.html#3">[ subject ]</a>
+              <a href="author.html#3">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

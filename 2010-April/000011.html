@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: April 1, 2010
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20April%201%2C%202010&In-Reply-To=%3C4BB4E465.9000803%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000012.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: April 1, 2010</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20April%201%2C%202010&In-Reply-To=%3C4BB4E465.9000803%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: April 1, 2010">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Thu Apr  1 20:22:29 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000012.html">[Zcplusplus-dev]  Z.C++ status report: April 10, 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To All Whom It May Concern,
+
+Z.C++ remains in stage one.  The release schedule has critically 
+slipped; test case coverage for the primary new feature (using 
+enumerators in expression parsing) is not complete enough to proceed to 
+stage 2.  Release is retargeted for the end of April 2010.
+
+The other features being considered for stage 1 are
+* minimal recognition of asm( ) directives
+
+* handling sizeof(char), sizeof(unsigned char), sizeof(signed char).  Optimization would be to 1U (or whatever the target size_t wants).
+
+Reducing the z_cpp executable size has been implemented.
+
+The following features will not make it in Z.C++ 0.0.4
+* tools subdirectory: Redundancy is good. The Python helper scripts for
+automatically forking the test cases can use replicas in other scripting
+languages.
+* ISO mode: while it is unlikely that full ISO mode building will come
+up, changing the Zaimoni.STL build system to build both Win32-specific
+and ISO-mode libraries on MingW32 is feasible.
+* function declaration parsing.
+** Source-code reductions for some easy cases. sizeof operator and
+strlen function on string literals come to mind, but a systematic review
+is in order.
+* CLang has __has_builtin and __has_feature &quot;magic macros&quot;.
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in
+stdint.h/cstdint . (The standards requires a single unsuffixed integer
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (comp.lang.fortran suggests there's quite a bit of
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets definitely will not make it into Z.C++ 0.0.4
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research
+stage).
+
+Feature creep is ruled out: the following are going to have to wait.
+* starting work on: Fortran 66, Haskell 98, ALGOL68 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode (required for MSVC support)
+
+All C99/C++0X compliance errors in z_cpp, not documented as intentional,
+will be considered blocking transition from stage 1 to stage 2
+(effectively blocking release of Z.C++ 0.0.4).  Please report such bugs
+immediately to <A HREF="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">zcplusplus-dev at lists.berlios.de</A> .  Reduced test cases
+would be appreciated.
+
+Best Regards,
+Kenneth Boyd
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000012.html">[Zcplusplus-dev]  Z.C++ status report: April 10, 2010
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

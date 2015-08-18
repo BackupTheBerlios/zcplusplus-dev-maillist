@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20January%2023%2C%202011&In-Reply-To=%3C4D3D06BF.7040609%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000022.html">
+   <LINK REL="Next"  HREF="000024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: January 23, 2011</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20January%2023%2C%202011&In-Reply-To=%3C4D3D06BF.7040609%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: January 23, 2011">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Mon Jan 24 05:57:35 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000022.html">[Zcplusplus-dev] Z.C++ status report: January 23, 2011
+</A></li>
+        <LI>Next message: <A HREF="000024.html">[Zcplusplus-dev] Z.C++ status report: January 23, 2011
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 1/23/2011 8:36 PM, asm warrior wrote:
+&gt;<i> Hi, I'm really confused about the current status of your compiler.
+</I>&gt;<i> From this page:
+</I>&gt;<i> <A HREF="http://zcplusplus.berlios.de/">http://zcplusplus.berlios.de/</A>
+</I>&gt;<i> I see that the major work was on c_preprocessor?
+</I>Correct.  I did the slow-moving target in the standards first.  The C 
+and C++ preprocessors should be compliant, other than most of the 
+standard library headers are not implemented and an intolerance for uses 
+of # and ## operators that are doomed to error on macro instantiation.  
+[That error is downgraded to a warning by --pedantic.]  Those headers 
+that are implemented, should be compliant.
+
+This preprocessor actively blocks attempts to #define keywords (indeed, 
+anything that the standards say would cause undefined behavior).  It 
+doesn't enforce reserved classes of identifiers yet (e.g., the 
+reservation of identifiers ending in _t in POSIX), but that is planned.  
+Likewise for verifying what's going into the INT_.._C and UINT_.._C 
+macro families in stdint.h/cstdint (not enforced but scheduled).
+
+limits.h/climits, stdint.h/cstdint, and stddef.h/cstddef are generated 
+on-the-fly in response to the command-line options for target machine 
+properties.  When proper floating point support goes in, the 
+implementation specific headers for those are scheduled to be 
+automatically generated as well.
+
+iso646.h/ciso646 and stdbool.h/cstdbool are also available and working.  
+#include &lt;typeinfo&gt; does nothing useful other than enable the extensions 
+for compile-time evaluation of operator == and != for the typeid 
+operator, and prevent erroring on the typeid operator.
+&gt;<i> Am I right?
+</I>&gt;<i>
+</I>&gt;<i> What's the status of C/C++ semantic analysis?
+</I>* Integer constant expressions should be evaluated at compile-time 
+according to target arithmetic.  This is largely inherited from the C 
+preprocessor's standard compliance.  (E.g., we will detect trapping 
+representations.]  If no options are used to specify target integer 
+representation, we assume Intel:
+** 8-bit char; sizeof(short)==2, sizeof(int)==4, sizeof(long)==4, 
+sizeof(long long)==8, char has same representation as unsigned char.
+** non-trapping two's-complement representation
+* sizeof operator will work on integral and enumeration types, and 
+string literals.  The internal CPU model doesn't have the configuration 
+for floating point yet.
+* Z.C++ does not error on run-time issues in the ternary operator ? : 
+for compile-time unevaluated expressions, as required by C99/C++0X.  
+E.g., (1 ? 2 : 1/0) will not error or warn.
+* enumeration support for C99/C++98 is as good as integer constant 
+expression support.  We do catch values going out of bounds, and 
+non-existence of base types in C++.  We do not handle the C++0X-specific 
+syntax yet.
+* static assertion support [C _Static_Assert, C++ static_assert ] is as 
+good as enumeration and integer constant expression support.
+* C++'s typeid operator is very minimally supported (we have an 
+extension to allow evaluating == and != at compile time to test the type 
+system).  More substantial uses actually requiring the class definition 
+will fail.
+* typedefs are parsed as well as the rest of the type system parsing.
+* We have enough namespace support in C++ to typedef std::size_t , and 
+do basic declarations within namespaces.  Namespace aliases and C++0X 
+inline namespaces aren't implemented yet.
+
+Anything not mentioned above, should be assumed to be substantially missing.
+* Z.C++ 0.0.7 *recognizes* that a non-template class, struct, or union 
+has been defined fine, will allow declaring global variables using these 
+types, and will catch multiple definition errors, but will not parse the 
+inside of the definition worth anything.  The test case suite scheduled 
+to go in next, is to verify that things behave reasonably here.
+* We do try to notice problems with duplicate storage classes (typedef, 
+extern, static, ...) on global variables.  We aren't clever enough to 
+try to guess C++0X vs. C++03 or earlier, and assume auto is a type 
+rather than a storage class as in C.
+* Functions are not recognized at all (which forces pre-alpha status), 
+and blocks most of the standard headers pretty much completely.  
+Likewise for templates.  Most of the invisible work in preparing for 
+Z.C++ 0.0.7 was improving the parser to be refactorable for this.
+* Compile-time target-emulated floating point arithmetic hasn't been 
+implemented either.  Parsing of these expressions is not heavily tested, 
+but the infrastructure is intended to be there.
+
+&gt;<i>
+</I>&gt;<i> Also, I have working on windows + mingw.
+</I>&gt;<i> I'm still have now idea how to build this compiler, any document or 
+</I>&gt;<i> instructions?
+</I>The build instructions on the home page <A HREF="http://zcplusplus.berlios.de/">http://zcplusplus.berlios.de/</A> 
+need a rewrite for clarity, then.
+
+Until the build system situation is fixed, you'll need to be on 
+Windows/MingW (with GNU make).  It should suffice to use either a source 
+release tarball or an SVN checkout.  Known-good versions of MingW are 
+3.4.x and 4.3.x.  4.2.x *almost* works (it'll pass the test suites, but 
+not work so well if you want the built-in help interactively).  4.4.x 
+and 4.5.x are both known to fail when building the Windows-specific C 
+memory manager, by generating illegal assembly as an intermediate 
+stage.  Fixing this is relatively low priority, as these versions also 
+fail to compile libjpeg and libpng the same way.
+
+The build is in-source.  After making sure the Boost headers are 
+installed in a system directory, adjust the POSIX.inc files to control 
+compiler options. (defaults should give you a debug build), then invoke 
+GNU make with no parameters. from the top-level source directory [the 
+one containing the Zaimoni.STL directory and CSupport.cpp]  (I do so 
+from the cmd.exe shell, with a locally built make 3.8.1 .)
+
+To get the absolute paths to the Z.C++ system headers to work, you'll 
+want to adjust the INSTALL_TO macro in CPreproc.cpp .  [This may need 
+relocating to _version.h .]
+
+Kenneth
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000022.html">[Zcplusplus-dev] Z.C++ status report: January 23, 2011
+</A></li>
+	<LI>Next message: <A HREF="000024.html">[Zcplusplus-dev] Z.C++ status report: January 23, 2011
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

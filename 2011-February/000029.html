@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20January%2023%2C%202011&In-Reply-To=%3C4D5817F4.2030502%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000028.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: January 23, 2011</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20January%2023%2C%202011&In-Reply-To=%3C4D5817F4.2030502%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: January 23, 2011">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Sun Feb 13 18:42:12 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000028.html">[Zcplusplus-dev] Z.C++ status report: January 23, 2011
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2/13/2011 8:00 AM, asmwarrior wrote:
+&gt;<i> On 2011-2-9 2:02, Kenneth Boyd wrote:
+</I>&gt;&gt;<i> On 2/8/2011 6:55 AM, asmwarrior wrote:
+</I>&gt;&gt;&gt;<i> On 2011-2-8 20:17, Kenneth Boyd wrote:
+</I>&gt;&gt;&gt;&gt;&gt;<i> Once I understand how to build it under mingw, I will try it soon. 
+</I>&gt;&gt;&gt;&gt;&gt;<i> thanks.
+</I>&gt;&gt;&gt;&gt;<i> I just pushed in some progress on making this simpler.  Starting 
+</I>&gt;&gt;&gt;&gt;<i> with SVN revision 611,  adjusting the INSTALL_TO macro became 
+</I>&gt;&gt;&gt;&gt;<i> optional.  This change didn't make Z.C++ 0.0.7 as it's a stage-one 
+</I>&gt;&gt;&gt;&gt;<i> task (new features).  (My first pass at making *defining* this 
+</I>&gt;&gt;&gt;&gt;<i> macro optional, botched.) 
+</I>&gt;&gt;&gt;<i> Hi, thanks for your information.
+</I>&gt;&gt;&gt;<i> I'm sorry I can't understand this sentence.
+</I>&gt;&gt;&gt;<i> I know the 0.0.7 version was just released several days ago. thanks 
+</I>&gt;&gt;&gt;<i> for your hard work.
+</I>&gt;&gt;&gt;<i> Is there any step by step instructions to teach me to build under MinGW?
+</I>&gt;&gt;<i> Well...what goes wrong when you try this (with GNU make as make.exe, 
+</I>&gt;&gt;<i> and MingW32 GCC 4.3.3 or 3.4.5 as gcc.exe)?
+</I>&gt;&gt;<i>
+</I>&gt;<i> thanks for the reply.
+</I>&gt;<i> currently, I haven't tried to build zplusplus, because I have only 
+</I>&gt;<i> MinGW4.4.5 or MinGW 4.5.x.
+</I>&gt;<i> It seems zc++ need a lower version of mingw gcc, which is a bit weird.
+</I>
+Yes, it is a bit weird.  To be specific, I've tested against the 
+following MingW32's in 32-bit mode
+* official 3.4.5 (works)
+* official 4.2.1 (works)
+* TDM 4.3.3 (works for Z.C++, ICE's on another internal project)
+* official 4.4.0 (generates invalid assembly for both Z.C++ 
+[Zaimoni.STL/Core.RAM/memory.cpp and Zaimoni.STL/Pure.C/format.c both 
+affected, may be other files affected], libjpeg, and libpng)
+* TDM 4.4.1 (generates invalid assembly for both Z.C++ 
+[Zaimoni.STL/Core.RAM/memory.cpp and Zaimoni.STL/Pure.C/format.c both 
+affected, may be other files affected], libjpeg, and libpng)
+* official 4.5.0 (generates invalid assumbly for both Z.C++ 
+[Zaimoni.STL/Core.RAM/memory.cpp and Zaimoni.STL/Pure.C/format.c both 
+affected, may be other files affected], libjpeg, and libpng)
+
+I just rechecked...there is a official 4.5.2 release so I should take a 
+look at that.
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110213/9014ab01/attachment.html">https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110213/9014ab01/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000028.html">[Zcplusplus-dev] Z.C++ status report: January 23, 2011
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: December 6, 2009
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20December%206%2C%202009&In-Reply-To=%3C4B1C1D3A.7020708%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: December 6, 2009</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20December%206%2C%202009&In-Reply-To=%3C4B1C1D3A.7020708%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: December 6, 2009">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Sun Dec  6 22:08:10 CET 2009</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To All Whom It May Concern
+
+Z.C++ is now in stage two (test case coverage), although I may bundle 
+some stage-3 work into this.
+
+Full enumerator parsing had to be cut due to time constraints.  (Almost 
+there in my local fork, but positively do not want to schedule the time 
+to work around unsigned_fixed_int being a standard-layout class rather 
+than a POD.).  I'm not comfortable about the gross holes in diagnosing 
+One Definition Rule violations so that may &quot;weasel in&quot; under test 
+cases.  Again: trying for Z.C++ 0.0.3 release in late Dec. 2009.
+
+Newly implemented features:
+* no-namespace restriction in C++ lifted.  We only try to handle C++98 
+namespaces, and do not handle namespace aliases or using directives either.
+* New options wired in: -Wc-c++-compat, -Wbackport
+* the CLang preprocessor extension __has_include() was implemented.
+
+Commentary below assumes only one developer:
+
+The following testing features are still possible for Z.C++ 0.0.3
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+* ISO mode: while it is unlikely that full ISO mode building will come 
+up, changing the Zaimoni.STL build system to build both Win32-specific 
+and ISO-mode libraries on MingW32 is feasible.
+
+The following features will not make it in Z.C++ 0.0.3
+* function declaration parsing.
+** Source-code reductions for some easy cases. sizeof operator and 
+strlen function on string literals come to mind, but a systematic review 
+is in order.
+* CLang has __has_builtin and __has_feature &quot;magic macros&quot;.
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (this is starting 
+to look ugly, as comp.lang.fortran suggests there's quite a bit of 
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets definitely will not make it into Z.C++ 0.0.3
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+
+Feature creep is ruled out: the following are going to have to wait.
+* starting work on: Fortran 66, Haskell 98, ALGOL68 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode (required for MSVC support)
+
+Best Regards,
+Kenneth Boyd
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

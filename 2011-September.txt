@@ -1,0 +1,32 @@
+From zaimoni at zaimoni.com  Thu Sep  1 04:33:54 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Wed, 31 Aug 2011 21:33:54 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: August 31, 2011
+In-Reply-To: <4E343148.9000703@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>
+	<4BC10692.4060404@zaimoni.com> <4D3C965A.4030607@zaimoni.com>
+	<4DDFFD16.50606@zaimoni.com> <4DE00F22.7000409@zaimoni.com>
+	<4E343148.9000703@zaimoni.com>
+Message-ID: <4E5EEF12.1030706@zaimoni.com>
+
+To All Whom It May Concern,
+
+We still have schedule slip.  The __zcc_linkage extension has landed (it 
+should be handling global variables).  Z.C++ is now in stage 2 (test 
+case coverage).
+
+Reviewing the prior checklist:
+* [done] bring up actually registering global variables with the 
+type_system object; finish setting up errors and cross-language warnings 
+when doing this.  Do initial adjustments to __zcc_linkage 
+implementation.  Go to stage 2 when this is done.
+* [in progress] roll out the test cases verifying pass/fail for what has 
+been implemented.  Go to stage 3 when this is done.
+* Complete stage three activities (source code cleanup and 
+microoptimizations), then spin the release of Z.C++ 0.0.9.
+
+At this point it looks like Z.C++ 0.0.9 is slated for September 2011.
+
+Kenneth
+
+

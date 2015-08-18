@@ -1,0 +1,67 @@
+From zaimoni at zaimoni.com  Wed Feb 17 16:58:38 2010
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Wed, 17 Feb 2010 09:58:38 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: February 17, 2010
+In-Reply-To: <4B0A51C2.3020501@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>
+	<4AB5C314.7060303@zaimoni.com> <4B0A51C2.3020501@zaimoni.com>
+Message-ID: <4B7C122E.1080904@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is now in stage one (new features).
+
+Implemented features:
+* enumerator initializer parsing (as far as the expression parser in 
+general goes)
+* erroring on of definition of typedefs and enums with the same name.
+
+Assuming only one developer, the highest-priority changes currently are:
+* Reduce the z_cpp executable size by restricting the binary to what is 
+needed for preprocessing.
+* use enumerators in expression parsing.
+
+The following testing features are still possible for Z.C++ 0.0.4
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+* ISO mode: while it is unlikely that full ISO mode building will come 
+up, changing the Zaimoni.STL build system to build both Win32-specific 
+and ISO-mode libraries on MingW32 is feasible.
+* handling sizeof(char), sizeof(unsigned char), sizeof(signed char).
+
+The following features will not make it in Z.C++ 0.0.4
+* function declaration parsing.
+** Source-code reductions for some easy cases. sizeof operator and 
+strlen function on string literals come to mind, but a systematic review 
+is in order.
+* CLang has __has_builtin and __has_feature "magic macros".
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (comp.lang.fortran suggests there's quite a bit of 
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets definitely will not make it into Z.C++ 0.0.3
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+
+Feature creep is ruled out: the following are going to have to wait.
+* starting work on: Fortran 66, Haskell 98, ALGOL68 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode (required for MSVC support)
+
+All C99/C++0X compliance errors in z_cpp, not documented as intentional, 
+will be considered blocking transition from stage 1 to stage 2 
+(effectively blocking release of Z.C++ 0.0.4).  Please report such bugs 
+immediately to zcplusplus-dev at lists.berlios.de .  Reduced test cases
+would be appreciated.
+
+Best Regards,
+Kenneth Boyd
+
+
+
+

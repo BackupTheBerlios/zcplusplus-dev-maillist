@@ -1,0 +1,50 @@
+From zaimoni at zaimoni.com  Thu Aug 20 22:40:45 2009
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Thu, 20 Aug 2009 15:40:45 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: August 20, 2009
+In-Reply-To: <4A629734.2050700@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com> <4A629734.2050700@zaimoni.com>
+Message-ID: <4A8DB4CD.3080109@zaimoni.com>
+
+To All Whom It May Concern,
+
+I'm switching Z.C++ to stage two (no new features, add test cases until 
+code coverage approaches 100%).
+
+The following informal target features have been implemented:
+* Test cases and elementary errors/warnings for simple declarations and 
+typedefs.
+* Five of the six test case sets for preprocessor arithmetic targeting 
+no-padding-bits platforms.  I still need two's complement trapping 
+signed integers as a preprocessing target.
+* LLONG_MIN should "just work" in (most) preprocessor expressions now.  
+Extending this could be rationalized either way (as, or as not, a new 
+feature).
+
+The following informal target features are not going to make it:
+* Source-code reductions for some easy cases. sizeof operator and strlen 
+function on string literals come to mind, but a systematic review is in 
+order.  [This requires a testable output format from zcc: new option 
+required, would prefer something that pretty-printed properly for a release]
+* Handle target CHAR_BIT!= host CHAR_BIT (way behind schedule)
+* Cross-platform floating point arithmetic emulation (way behind schedule)
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.  (no feature creep)
+* starting work on Fortran 66 support (no feature creep)
+* Build a catalog of exotic hardware features to handle in z_cpp.  (No 
+feature creep).
+
+The following test case sets and features are still open for addition:
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+
+Best Regards,
+Kenneth Boyd
+
+
+

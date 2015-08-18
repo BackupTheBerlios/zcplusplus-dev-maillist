@@ -1,0 +1,66 @@
+From zaimoni at zaimoni.com  Sun Dec  6 22:08:10 2009
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Sun, 06 Dec 2009 15:08:10 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: December 6, 2009
+In-Reply-To: <4B0A51C2.3020501@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>
+	<4B0A51C2.3020501@zaimoni.com>
+Message-ID: <4B1C1D3A.7020708@zaimoni.com>
+
+To All Whom It May Concern
+
+Z.C++ is now in stage two (test case coverage), although I may bundle 
+some stage-3 work into this.
+
+Full enumerator parsing had to be cut due to time constraints.  (Almost 
+there in my local fork, but positively do not want to schedule the time 
+to work around unsigned_fixed_int being a standard-layout class rather 
+than a POD.).  I'm not comfortable about the gross holes in diagnosing 
+One Definition Rule violations so that may "weasel in" under test 
+cases.  Again: trying for Z.C++ 0.0.3 release in late Dec. 2009.
+
+Newly implemented features:
+* no-namespace restriction in C++ lifted.  We only try to handle C++98 
+namespaces, and do not handle namespace aliases or using directives either.
+* New options wired in: -Wc-c++-compat, -Wbackport
+* the CLang preprocessor extension __has_include() was implemented.
+
+Commentary below assumes only one developer:
+
+The following testing features are still possible for Z.C++ 0.0.3
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+* ISO mode: while it is unlikely that full ISO mode building will come 
+up, changing the Zaimoni.STL build system to build both Win32-specific 
+and ISO-mode libraries on MingW32 is feasible.
+
+The following features will not make it in Z.C++ 0.0.3
+* function declaration parsing.
+** Source-code reductions for some easy cases. sizeof operator and 
+strlen function on string literals come to mind, but a systematic review 
+is in order.
+* CLang has __has_builtin and __has_feature "magic macros".
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (this is starting 
+to look ugly, as comp.lang.fortran suggests there's quite a bit of 
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets definitely will not make it into Z.C++ 0.0.3
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+
+Feature creep is ruled out: the following are going to have to wait.
+* starting work on: Fortran 66, Haskell 98, ALGOL68 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode (required for MSVC support)
+
+Best Regards,
+Kenneth Boyd
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: May 27, 2011
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20May%2027%2C%202011&In-Reply-To=%3C4DDFFD16.50606%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000031.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: May 27, 2011</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20May%2027%2C%202011&In-Reply-To=%3C4DDFFD16.50606%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: May 27, 2011">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Fri May 27 21:35:50 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000031.html">[Zcplusplus-dev] Z.C++ status report: May 27, 2011
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To All Whom It May Concern,
+
+Z.C++ is still in stage 1 (new features).  The next feature to go in 
+will be the compiler extension __zcc_linkage, which is a compile-time 
+constant operator much like the sizeof operator.
+
+Example syntax for an identifier: __zcc_linkage(size_t).  Legal values 
+tentatively are:
+-2: a bug prevented evaluating this properly.
+-1: the identifier has not been declared.
+0: the identifier has been declared, and has no linkage
+1: the identifier has been declared, and has internal linkage.
+2: the identifier has been declared, and has default external linkage.
+3: the identifier has been declared, and has external &quot;C&quot; linkage.
+
+I'm not sure whether the choices of 2 and 3 are reasonable; it may be 
+more reasonable to hard-code the languages, in which case 2 would be C 
+linkage and 3 would be C++ linkage.
+
+In C++, __zcc_linkage does take into account the current namespace and 
+attempts Koenig lookup; __zcc_linkage(std::size_t) should be evaluated 
+at compile-time.
+
+This extension is intended to make linkage testable by static 
+assertions.  The following would be expected to pass:
+
+#include &lt;stddef.h&gt;
+
+#if  9 &lt;= 10000*__ZCC__ + 100*__ZCC_MINOR__ + __ZCC_PATCHLEVEL__
+#ifdef __cplusplus
+static_assert(0==__zcc_linkage(size_t));
+#else
+_Static_Assert(0==__zcc_linkage(size_t));
+#endif
+#endif
+
+Kenneth
+
+P.S.  All C99/C++0X compliance errors in z_cpp or zcc -E, not documented 
+as intentional, will block the release of Z.C++ 0.0.9.  Please report 
+such bugs immediately to <A HREF="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">zcplusplus-dev at lists.berlios.de</A> .  Reduced test 
+cases would be appreciated.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000031.html">[Zcplusplus-dev] Z.C++ status report: May 27, 2011
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

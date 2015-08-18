@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: July 30, 2011
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20July%2030%2C%202011&In-Reply-To=%3C4E343148.9000703%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: July 30, 2011</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20July%2030%2C%202011&In-Reply-To=%3C4E343148.9000703%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: July 30, 2011">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Sat Jul 30 18:28:56 CEST 2011</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To All Whom It May Concern,
+
+We have schedule slip.  Physically I could start the release process 
+today (July 30 2011) and get it out tomorrow, but the implementation of 
+the __zcc_linkage extension is incomplete: it does not handle global 
+variables yet.
+
+I'm going to let the release month slide to August 2011.  The current 
+plan is:
+* bring up actually registering global variables with the type_system 
+object; finish setting up errors and cross-language warnings when doing 
+this.  Do initial adjustments to __zcc_linkage implementation.  Go to 
+stage 2 when this is done.
+* roll out the test cases verifying pass/fail for what has been 
+implemented.  Go to stage 3 when this is done
+* Complete stage three activities (source code cleanup and 
+microoptimizations), then spin the release of Z.C++ 0.0.9.
+
+In particular, neither full function signature parsing, nor actually 
+writing object files, are targeted for Z.C++ 0.0.9 .
+
+Kenneth
+
+P.S.  All C99/C++0X compliance errors in z_cpp or zcc -E, not documented 
+as intentional, will block the release of Z.C++ 0.0.9.  Please report 
+such bugs immediately to <A HREF="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">zcplusplus-dev at lists.berlios.de</A> .  Reduced test 
+cases would be appreciated.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

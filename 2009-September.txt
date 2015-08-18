@@ -1,0 +1,76 @@
+From zaimoni at zaimoni.com  Sat Sep  5 06:17:50 2009
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Fri, 04 Sep 2009 23:17:50 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: September 4, 2009
+In-Reply-To: <4A8DB4CD.3080109@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com> <4A629734.2050700@zaimoni.com>
+	<4A8DB4CD.3080109@zaimoni.com>
+Message-ID: <4AA1E66E.4050203@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is now in stage three (optimizations only).  Expected release date 
+for V0.0.2 is in one or two weeks.
+
+The attempt to add the ability to build in MSVC++ 2008 from the command 
+line failed: this requires API-breaking changes belonging in Stage 1.
+
+Basic test cases for targeting twos-complement trapping arithmetic 
+machines were added.
+
+Best Regards,
+Kenneth Boyd
+
+
+
+From zaimoni at zaimoni.com  Sun Sep 20 07:52:20 2009
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Sun, 20 Sep 2009 00:52:20 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: September 20, 2009
+In-Reply-To: <4AA1E66E.4050203@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>
+	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>
+	<4AA1E66E.4050203@zaimoni.com>
+Message-ID: <4AB5C314.7060303@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is now in stage one (new features).  A testable output format for 
+zcc has been implemented (source code transform).
+
+Reviewing the list of possible features:
+* Source-code reductions for some easy cases. sizeof operator and strlen 
+function on string literals come to mind, but a systematic review is in 
+order.
+* The __COUNTER__ macro extension is supported by all of GCC, CLang, and 
+MSVC.
+* The __INCLUDE_LEVEL__ macro extension is supported by GCC and CLang.
+* The __TIMESTAMP__ macro extension is supported by all of GCC, CLang, 
+and MSVC.
+* CLang has __has_builtin and __has_feature "magic macros".
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (this is starting 
+to look ugly, as comp.lang.fortran suggests there's quite a bit of 
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets and features are of interest:
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+
+Possibilities for feature creep include:
+* starting work on Fortran 66 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode.
+
+Best Regards,
+Kenneth Boyd
+
+
+

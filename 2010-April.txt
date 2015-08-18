@@ -1,0 +1,165 @@
+From zaimoni at zaimoni.com  Thu Apr  1 20:22:29 2010
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Thu, 01 Apr 2010 13:22:29 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: April 1, 2010
+In-Reply-To: <4B7C122E.1080904@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>
+	<4B0A51C2.3020501@zaimoni.com> <4B7C122E.1080904@zaimoni.com>
+Message-ID: <4BB4E465.9000803@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ remains in stage one.  The release schedule has critically 
+slipped; test case coverage for the primary new feature (using 
+enumerators in expression parsing) is not complete enough to proceed to 
+stage 2.  Release is retargeted for the end of April 2010.
+
+The other features being considered for stage 1 are
+* minimal recognition of asm( ) directives
+
+* handling sizeof(char), sizeof(unsigned char), sizeof(signed char).  Optimization would be to 1U (or whatever the target size_t wants).
+
+Reducing the z_cpp executable size has been implemented.
+
+The following features will not make it in Z.C++ 0.0.4
+* tools subdirectory: Redundancy is good. The Python helper scripts for
+automatically forking the test cases can use replicas in other scripting
+languages.
+* ISO mode: while it is unlikely that full ISO mode building will come
+up, changing the Zaimoni.STL build system to build both Win32-specific
+and ISO-mode libraries on MingW32 is feasible.
+* function declaration parsing.
+** Source-code reductions for some easy cases. sizeof operator and
+strlen function on string literals come to mind, but a systematic review
+is in order.
+* CLang has __has_builtin and __has_feature "magic macros".
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in
+stdint.h/cstdint . (The standards requires a single unsuffixed integer
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (comp.lang.fortran suggests there's quite a bit of
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets definitely will not make it into Z.C++ 0.0.4
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research
+stage).
+
+Feature creep is ruled out: the following are going to have to wait.
+* starting work on: Fortran 66, Haskell 98, ALGOL68 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode (required for MSVC support)
+
+All C99/C++0X compliance errors in z_cpp, not documented as intentional,
+will be considered blocking transition from stage 1 to stage 2
+(effectively blocking release of Z.C++ 0.0.4).  Please report such bugs
+immediately to zcplusplus-dev at lists.berlios.de .  Reduced test cases
+would be appreciated.
+
+Best Regards,
+Kenneth Boyd
+
+
+From zaimoni at zaimoni.com  Sun Apr 11 01:15:30 2010
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Sat, 10 Apr 2010 18:15:30 -0500
+Subject: [Zcplusplus-dev]  Z.C++ status report: April 10, 2010
+In-Reply-To: <4BB4E465.9000803@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>
+	<4B7C122E.1080904@zaimoni.com> <4BB4E465.9000803@zaimoni.com>
+Message-ID: <4BC10692.4060404@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is now in stage two.
+* enumerators in expression parsing appears to be fully supported now.
+* A limited implementation of the sizeof operator is in place.  This may 
+be augmented slightly in spite of the current stage.
+
+Further commentary assumes one developer.
+
+The following features should not make it into Z.C++ 0.0.4
+* function declaration parsing
+* minimal recognition of asm directives (there isn't enough time to 
+think through what the binary format should be)
+* ISO mode build process
+** blocks: MSVC, Linux (Knoppix 6.2.1) build processes
+* parallel versions of the Python helper scripts in the tools directory, 
+in other scripting languages.
+* CLang has __has_builtin and __has_feature "magic macros".
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (comp.lang.fortran 
+suggests there's quite a bit of hardware out there that isn't even 
+remotely close to IEEE)
+
+The following test case sets definitely will not make it into Z.C++ 0.0.4
+* z_cpp,zcc: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+
+Feature creep is ruled out: the following are going to have to wait.
+* starting work on: Fortran 66, Haskell 98, ALGOL68 support
+* Build a catalog of exotic hardware features to handle.
+
+All C99/C++0X compliance errors in z_cpp, not documented as intentional, 
+will be considered grounds for reverting to stage 1 (effectively 
+blocking release of Z.C++ 0.0.4).  Please report such bugs immediately 
+to zcplusplus-dev at lists.berlios.de .  Reduced test cases would be 
+appreciated.
+
+Best Regards,
+Kenneth Boyd
+
+
+From zaimoni at zaimoni.com  Mon Apr 19 20:21:27 2010
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Mon, 19 Apr 2010 13:21:27 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: April 19, 2010
+In-Reply-To: <4BC10692.4060404@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>
+	<4BB4E465.9000803@zaimoni.com> <4BC10692.4060404@zaimoni.com>
+Message-ID: <4BCC9F27.5040705@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is now in stage 3 (code cleanup and optimization).
+* The sizeof operator is working for the limited extent intended: 
+predefined types *only* (no pointers, no structs, ....)
+
+Refer to the April 10, 2010 status report for features not making it 
+into Z.C++ 0.0.4.
+
+All C99/C++0X compliance errors in z_cpp, not documented as intentional, 
+will be considered grounds for reverting to stage 1 (effectively 
+blocking release of Z.C++ 0.0.4).  Please report such bugs immediately 
+to zcplusplus-dev at lists.berlios.de .  Reduced test cases would be 
+appreciated.
+
+Best Regards,
+Kenneth Boyd
+
+
+From zaimoni at zaimoni.com  Thu Apr 22 03:13:08 2010
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Wed, 21 Apr 2010 20:13:08 -0500
+Subject: [Zcplusplus-dev] Build Process: get_filesize is going EXTERN_C
+Message-ID: <4BCFA2A4.7060600@zaimoni.com>
+
+To All Whom It May Concern,
+
+The get_filesize(FILE *) function should be going from an inline C++ 
+function to an extern "C" library function within the Zaimoni.STL before 
+the Z.C++ 0.0.4 release.  Change of usage will be:
+* need to include Zaimoni.STL/Pure.C/stdio_c.h rather than 
+Zaimoni.STL/cstdio
+* will need to link the new library z_stdio_c .
+
+Best Regards,
+Kenneth Boyd
+
+
+
+

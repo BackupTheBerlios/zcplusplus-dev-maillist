@@ -1,0 +1,592 @@
+From asmwarrior at gmail.com  Tue Jan 18 04:29:33 2011
+From: asmwarrior at gmail.com (asm warrior)
+Date: Tue, 18 Jan 2011 11:29:33 +0800
+Subject: [Zcplusplus-dev] great project
+Message-ID: <AANLkTin4g4aDpnvQwegQ9gjT0NNF5-KREB2zz0FnevVc@mail.gmail.com>
+
+I think there are not so much c++ compiler (open source) framework in the
+world, this is the third one I see, the other is Gcc and Clang. So, it was
+great!!!
+
+My major interests was the codecompletion feature in the Codeblocks' IDE.
+
+I would like to ask that if it can supply a minimal lib to support code
+completion feature?
+
+Currently Clang can do this
+see:
+http://clang.llvm.org/doxygen/group__CINDEX__CODE__COMPLET.html
+
+it is just a simple C interface.
+
+Any ideas?
+
+thanks.
+
+asmwarrior
+ollydbg from Codeblocks' forum
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110118/c08605a5/attachment.html>
+
+From asmwarrior at gmail.com  Tue Jan 18 04:44:41 2011
+From: asmwarrior at gmail.com (asm warrior)
+Date: Tue, 18 Jan 2011 11:44:41 +0800
+Subject: [Zcplusplus-dev] btw, some function prototype was too long
+Message-ID: <AANLkTi=LVzRwXZOCFbTvZZhv6uggcoF=VSpa+eD41oF9@mail.gmail.com>
+
+like this one:
+
+void
+CPreprocessor::_preprocess(autovalarray_ptr<Token<char>* >& TokenList,
+autovalarray_ptr<char*>& locked_macros, autovalarray_ptr<char*>&
+macros_object, autovalarray_ptr<Token<char>*>& macros_object_expansion,
+autovalarray_ptr<Token<char>*>& macros_object_expansion_pre_eval,
+autovalarray_ptr<char*>& macros_function, autovalarray_ptr<Token<char>*>&
+macros_function_arglist, autovalarray_ptr<Token<char>*>&
+macros_function_expansion, autovalarray_ptr<Token<char>*>&
+macros_function_expansion_pre_eval, autovalarray_ptr<POD_triple<const char*,
+const char*,uintptr_t> >& include_file_index,
+autovalarray_ptr<POD_pair<const char*,autovalarray_ptr<Token<char>*>* > >&
+include_file_cache, const type_system& min_types)
+
+
+and it was too hard to read your code .sorry.
+
+
+asmwarrior
+ollydbg from Codeblocks' forum.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110118/6da85abb/attachment.html>
+
+From zaimoni at zaimoni.com  Tue Jan 18 21:14:59 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Tue, 18 Jan 2011 14:14:59 -0600
+Subject: [Zcplusplus-dev] great project
+In-Reply-To: <AANLkTin4g4aDpnvQwegQ9gjT0NNF5-KREB2zz0FnevVc@mail.gmail.com>
+References: <AANLkTin4g4aDpnvQwegQ9gjT0NNF5-KREB2zz0FnevVc@mail.gmail.com>
+Message-ID: <4D35F4C3.6080406@zaimoni.com>
+
+On 1/17/2011 9:29 PM, asm warrior wrote:
+> I think there are not so much c++ compiler (open source) framework in 
+> the world, this is the third one I see, the other is Gcc and Clang. 
+> So, it was great!!!
+>
+> My major interests was the codecompletion feature in the Codeblocks' IDE.
+>
+> I would like to ask that if it can supply a minimal lib to support 
+> code completion feature?
+Ahem...the checkpoint for Z.C++ going from pre-alpha (0.0.x series) to 
+alpha (0.1.x series and later) is compiling the *NIX utilities true and 
+false, to at least one platform.  I don't have a visual for how to 
+implement code completion before that works.
+
+[Blocker requirements for above: must parse function prototypes (for 
+main and/or exit), and integrated assembler.  I don't see either of 
+these happening on my own time before Jan. 31 2011 which is the release 
+cutoff for 0.0.7 .]
+
+At such time as implementing code completion makes sense, I would most 
+definitely review the CLang library as an example of a clean interface.
+
+Kenneth
+
+
+
+
+From zaimoni at zaimoni.com  Tue Jan 18 21:35:13 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Tue, 18 Jan 2011 14:35:13 -0600
+Subject: [Zcplusplus-dev] btw, some function prototype was too long
+In-Reply-To: <AANLkTi=LVzRwXZOCFbTvZZhv6uggcoF=VSpa+eD41oF9@mail.gmail.com>
+References: <AANLkTi=LVzRwXZOCFbTvZZhv6uggcoF=VSpa+eD41oF9@mail.gmail.com>
+Message-ID: <4D35F981.5070107@zaimoni.com>
+
+On 1/17/2011 9:44 PM, asm warrior wrote:
+> like this one:
+>
+> void
+> CPreprocessor::_preprocess(autovalarray_ptr<Token<char>* >& TokenList, 
+> autovalarray_ptr<char*>& locked_macros, autovalarray_ptr<char*>& 
+> macros_object, autovalarray_ptr<Token<char>*>& 
+> macros_object_expansion, autovalarray_ptr<Token<char>*>& 
+> macros_object_expansion_pre_eval, autovalarray_ptr<char*>& 
+> macros_function, autovalarray_ptr<Token<char>*>& 
+> macros_function_arglist, autovalarray_ptr<Token<char>*>& 
+> macros_function_expansion, autovalarray_ptr<Token<char>*>& 
+> macros_function_expansion_pre_eval, autovalarray_ptr<POD_triple<const 
+> char*, const char*,uintptr_t> >& include_file_index, 
+> autovalarray_ptr<POD_pair<const char*,autovalarray_ptr<Token<char>*>* 
+> > >& include_file_cache, const type_system& min_types)
+>
+> and it was too hard to read your code .sorry.
+Yes, the sheer file size of the C preprocessor (198K in SVN) and C front 
+end source code (628K in SVN, likely to go up a bit from documenting 
+more test cases before release) is problematic even before the line 
+length issues.
+
+Kenneth
+
+
+From asmwarrior at gmail.com  Thu Jan 20 03:49:48 2011
+From: asmwarrior at gmail.com (asm warrior)
+Date: Thu, 20 Jan 2011 10:49:48 +0800
+Subject: [Zcplusplus-dev] great project
+In-Reply-To: <4D35F4C3.6080406@zaimoni.com>
+References: <AANLkTin4g4aDpnvQwegQ9gjT0NNF5-KREB2zz0FnevVc@mail.gmail.com>
+	<4D35F4C3.6080406@zaimoni.com>
+Message-ID: <AANLkTimMofZJXaG3HebuA3CHEKBCfHaicTYd7UQ0MMJx@mail.gmail.com>
+
+thanks for your reply.
+I wish your c++ compiler will becomes successful!
+So will keep attention on this great project.
+
+
+On Wed, Jan 19, 2011 at 4:14 AM, Kenneth Boyd <zaimoni at zaimoni.com> wrote:
+
+> On 1/17/2011 9:29 PM, asm warrior wrote:
+>
+>> I think there are not so much c++ compiler (open source) framework in the
+>> world, this is the third one I see, the other is Gcc and Clang. So, it was
+>> great!!!
+>>
+>> My major interests was the codecompletion feature in the Codeblocks' IDE.
+>>
+>> I would like to ask that if it can supply a minimal lib to support code
+>> completion feature?
+>>
+> Ahem...the checkpoint for Z.C++ going from pre-alpha (0.0.x series) to
+> alpha (0.1.x series and later) is compiling the *NIX utilities true and
+> false, to at least one platform.  I don't have a visual for how to implement
+> code completion before that works.
+>
+> [Blocker requirements for above: must parse function prototypes (for main
+> and/or exit), and integrated assembler.  I don't see either of these
+> happening on my own time before Jan. 31 2011 which is the release cutoff for
+> 0.0.7 .]
+>
+> At such time as implementing code completion makes sense, I would most
+> definitely review the CLang library as an example of a clean interface.
+>
+> Kenneth
+>
+>
+> _______________________________________________
+> Zcplusplus-dev mailing list
+> Zcplusplus-dev at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/zcplusplus-dev
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110120/0eb7affe/attachment.html>
+
+From asmwarrior at gmail.com  Thu Jan 20 03:51:49 2011
+From: asmwarrior at gmail.com (asm warrior)
+Date: Thu, 20 Jan 2011 10:51:49 +0800
+Subject: [Zcplusplus-dev] btw, some function prototype was too long
+In-Reply-To: <4D35F981.5070107@zaimoni.com>
+References: <AANLkTi=LVzRwXZOCFbTvZZhv6uggcoF=VSpa+eD41oF9@mail.gmail.com>
+	<4D35F981.5070107@zaimoni.com>
+Message-ID: <AANLkTik3+GctJ19ecovXSe2K74yipXyBztSGdTRHAnBG@mail.gmail.com>
+
+I just thought that if the source code are hard to read, (like currently
+gcc's source base was hard to read compared with clang), than people will go
+away to find another alternatives.
+
+asm
+
+On Wed, Jan 19, 2011 at 4:35 AM, Kenneth Boyd <zaimoni at zaimoni.com> wrote:
+
+> On 1/17/2011 9:44 PM, asm warrior wrote:
+>
+>> like this one:
+>>
+>> void
+>> CPreprocessor::_preprocess(autovalarray_ptr<Token<char>* >& TokenList,
+>> autovalarray_ptr<char*>& locked_macros, autovalarray_ptr<char*>&
+>> macros_object, autovalarray_ptr<Token<char>*>& macros_object_expansion,
+>> autovalarray_ptr<Token<char>*>& macros_object_expansion_pre_eval,
+>> autovalarray_ptr<char*>& macros_function, autovalarray_ptr<Token<char>*>&
+>> macros_function_arglist, autovalarray_ptr<Token<char>*>&
+>> macros_function_expansion, autovalarray_ptr<Token<char>*>&
+>> macros_function_expansion_pre_eval, autovalarray_ptr<POD_triple<const char*,
+>> const char*,uintptr_t> >& include_file_index,
+>> autovalarray_ptr<POD_pair<const char*,autovalarray_ptr<Token<char>*>* > >&
+>> include_file_cache, const type_system& min_types)
+>>
+>> and it was too hard to read your code .sorry.
+>>
+> Yes, the sheer file size of the C preprocessor (198K in SVN) and C front
+> end source code (628K in SVN, likely to go up a bit from documenting more
+> test cases before release) is problematic even before the line length
+> issues.
+>
+> Kenneth
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110120/95f336a8/attachment.html>
+
+From zaimoni at zaimoni.com  Sun Jan 23 21:58:02 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Sun, 23 Jan 2011 14:58:02 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4BC10692.4060404@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>
+	<4BB4E465.9000803@zaimoni.com> <4BC10692.4060404@zaimoni.com>
+Message-ID: <4D3C965A.4030607@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is still in stage 2, mainly due to fitting in stage 3 work (object 
+file size reduction) during all changes.  Scheduled release date for 
+Z.C++ 0.0.7 is Jan. 31, 2011.  This assumes that the remaining test case 
+coverage issues at 
+http://www.zaimoni.com/mantisbt/search.php?project_id=1&sticky_issues=off&sortby=target_version&dir=ASC&hide_status_id=-2 
+<https://www.zaimoni.com/mantisbt/search.php?project_id=1&sticky_issues=off&sortby=target_version&dir=ASC&hide_status_id=-2> 
+are resolved on Jan. 29, 2011 .  (If they resolve much earlier, I'll 
+indulge in some feature creep.)
+
+All C99/C++0X compliance errors in z_cpp, not documented as intentional, 
+will be considered grounds for reverting to stage 1 (effectively 
+blocking release of Z.C++ 0.0.7).  Please report such bugs immediately 
+to zcplusplus-dev at lists.berlios.de .  Reduced test cases would be 
+appreciated.
+
+Best Regards,
+Kenneth Boyd
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110123/3ae04478/attachment.html>
+
+From asmwarrior at gmail.com  Mon Jan 24 03:36:13 2011
+From: asmwarrior at gmail.com (asm warrior)
+Date: Mon, 24 Jan 2011 10:36:13 +0800
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4D3C965A.4030607@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com> <4A629734.2050700@zaimoni.com>
+	<4A8DB4CD.3080109@zaimoni.com> <4AA1E66E.4050203@zaimoni.com>
+	<4AB5C314.7060303@zaimoni.com> <4B0A51C2.3020501@zaimoni.com>
+	<4B7C122E.1080904@zaimoni.com> <4BB4E465.9000803@zaimoni.com>
+	<4BC10692.4060404@zaimoni.com> <4D3C965A.4030607@zaimoni.com>
+Message-ID: <AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>
+
+Hi, I'm really confused about the current status of your compiler.
+>From this page:
+http://zcplusplus.berlios.de/
+I see that the major work was on c_preprocessor?
+Am I right?
+
+What's the status of C/C++ semantic analysis?
+
+Also, I have working on windows + mingw.
+I'm still have now idea how to build this compiler, any document or
+instructions?
+
+thanks.
+
+On Mon, Jan 24, 2011 at 4:58 AM, Kenneth Boyd <zaimoni at zaimoni.com> wrote:
+
+>  To All Whom It May Concern,
+>
+> Z.C++ is still in stage 2, mainly due to fitting in stage 3 work (object
+> file size reduction) during all changes.  Scheduled release date for Z.C++
+> 0.0.7 is Jan. 31, 2011.  This assumes that the remaining test case coverage
+> issues at
+> http://www.zaimoni.com/mantisbt/search.php?project_id=1&sticky_issues=off&sortby=target_version&dir=ASC&hide_status_id=-2<https://www.zaimoni.com/mantisbt/search.php?project_id=1&sticky_issues=off&sortby=target_version&dir=ASC&hide_status_id=-2>are resolved on Jan. 29, 2011 .  (If they resolve much earlier, I'll indulge
+> in some feature creep.)
+>
+> All C99/C++0X compliance errors in z_cpp, not documented as intentional,
+> will be considered grounds for reverting to stage 1 (effectively blocking
+> release of Z.C++ 0.0.7).  Please report such bugs immediately to
+> zcplusplus-dev at lists.berlios.de .  Reduced test cases would be
+> appreciated.
+>
+> Best Regards,
+> Kenneth Boyd
+>
+> _______________________________________________
+> Zcplusplus-dev mailing list
+> Zcplusplus-dev at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/zcplusplus-dev
+>
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110124/44a407e1/attachment.html>
+
+From zaimoni at zaimoni.com  Mon Jan 24 05:57:35 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Sun, 23 Jan 2011 22:57:35 -0600
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>	<4BC10692.4060404@zaimoni.com>	<4D3C965A.4030607@zaimoni.com>
+	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>
+Message-ID: <4D3D06BF.7040609@zaimoni.com>
+
+On 1/23/2011 8:36 PM, asm warrior wrote:
+> Hi, I'm really confused about the current status of your compiler.
+> From this page:
+> http://zcplusplus.berlios.de/
+> I see that the major work was on c_preprocessor?
+Correct.  I did the slow-moving target in the standards first.  The C 
+and C++ preprocessors should be compliant, other than most of the 
+standard library headers are not implemented and an intolerance for uses 
+of # and ## operators that are doomed to error on macro instantiation.  
+[That error is downgraded to a warning by --pedantic.]  Those headers 
+that are implemented, should be compliant.
+
+This preprocessor actively blocks attempts to #define keywords (indeed, 
+anything that the standards say would cause undefined behavior).  It 
+doesn't enforce reserved classes of identifiers yet (e.g., the 
+reservation of identifiers ending in _t in POSIX), but that is planned.  
+Likewise for verifying what's going into the INT_.._C and UINT_.._C 
+macro families in stdint.h/cstdint (not enforced but scheduled).
+
+limits.h/climits, stdint.h/cstdint, and stddef.h/cstddef are generated 
+on-the-fly in response to the command-line options for target machine 
+properties.  When proper floating point support goes in, the 
+implementation specific headers for those are scheduled to be 
+automatically generated as well.
+
+iso646.h/ciso646 and stdbool.h/cstdbool are also available and working.  
+#include <typeinfo> does nothing useful other than enable the extensions 
+for compile-time evaluation of operator == and != for the typeid 
+operator, and prevent erroring on the typeid operator.
+> Am I right?
+>
+> What's the status of C/C++ semantic analysis?
+* Integer constant expressions should be evaluated at compile-time 
+according to target arithmetic.  This is largely inherited from the C 
+preprocessor's standard compliance.  (E.g., we will detect trapping 
+representations.]  If no options are used to specify target integer 
+representation, we assume Intel:
+** 8-bit char; sizeof(short)==2, sizeof(int)==4, sizeof(long)==4, 
+sizeof(long long)==8, char has same representation as unsigned char.
+** non-trapping two's-complement representation
+* sizeof operator will work on integral and enumeration types, and 
+string literals.  The internal CPU model doesn't have the configuration 
+for floating point yet.
+* Z.C++ does not error on run-time issues in the ternary operator ? : 
+for compile-time unevaluated expressions, as required by C99/C++0X.  
+E.g., (1 ? 2 : 1/0) will not error or warn.
+* enumeration support for C99/C++98 is as good as integer constant 
+expression support.  We do catch values going out of bounds, and 
+non-existence of base types in C++.  We do not handle the C++0X-specific 
+syntax yet.
+* static assertion support [C _Static_Assert, C++ static_assert ] is as 
+good as enumeration and integer constant expression support.
+* C++'s typeid operator is very minimally supported (we have an 
+extension to allow evaluating == and != at compile time to test the type 
+system).  More substantial uses actually requiring the class definition 
+will fail.
+* typedefs are parsed as well as the rest of the type system parsing.
+* We have enough namespace support in C++ to typedef std::size_t , and 
+do basic declarations within namespaces.  Namespace aliases and C++0X 
+inline namespaces aren't implemented yet.
+
+Anything not mentioned above, should be assumed to be substantially missing.
+* Z.C++ 0.0.7 *recognizes* that a non-template class, struct, or union 
+has been defined fine, will allow declaring global variables using these 
+types, and will catch multiple definition errors, but will not parse the 
+inside of the definition worth anything.  The test case suite scheduled 
+to go in next, is to verify that things behave reasonably here.
+* We do try to notice problems with duplicate storage classes (typedef, 
+extern, static, ...) on global variables.  We aren't clever enough to 
+try to guess C++0X vs. C++03 or earlier, and assume auto is a type 
+rather than a storage class as in C.
+* Functions are not recognized at all (which forces pre-alpha status), 
+and blocks most of the standard headers pretty much completely.  
+Likewise for templates.  Most of the invisible work in preparing for 
+Z.C++ 0.0.7 was improving the parser to be refactorable for this.
+* Compile-time target-emulated floating point arithmetic hasn't been 
+implemented either.  Parsing of these expressions is not heavily tested, 
+but the infrastructure is intended to be there.
+
+>
+> Also, I have working on windows + mingw.
+> I'm still have now idea how to build this compiler, any document or 
+> instructions?
+The build instructions on the home page http://zcplusplus.berlios.de/ 
+need a rewrite for clarity, then.
+
+Until the build system situation is fixed, you'll need to be on 
+Windows/MingW (with GNU make).  It should suffice to use either a source 
+release tarball or an SVN checkout.  Known-good versions of MingW are 
+3.4.x and 4.3.x.  4.2.x *almost* works (it'll pass the test suites, but 
+not work so well if you want the built-in help interactively).  4.4.x 
+and 4.5.x are both known to fail when building the Windows-specific C 
+memory manager, by generating illegal assembly as an intermediate 
+stage.  Fixing this is relatively low priority, as these versions also 
+fail to compile libjpeg and libpng the same way.
+
+The build is in-source.  After making sure the Boost headers are 
+installed in a system directory, adjust the POSIX.inc files to control 
+compiler options. (defaults should give you a debug build), then invoke 
+GNU make with no parameters. from the top-level source directory [the 
+one containing the Zaimoni.STL directory and CSupport.cpp]  (I do so 
+from the cmd.exe shell, with a locally built make 3.8.1 .)
+
+To get the absolute paths to the Z.C++ system headers to work, you'll 
+want to adjust the INSTALL_TO macro in CPreproc.cpp .  [This may need 
+relocating to _version.h .]
+
+Kenneth
+
+
+
+
+From asmwarrior at gmail.com  Wed Jan 26 06:42:37 2011
+From: asmwarrior at gmail.com (asm warrior)
+Date: Wed, 26 Jan 2011 13:42:37 +0800
+Subject: [Zcplusplus-dev] Z.C++ status report: January 23, 2011
+In-Reply-To: <4D3D06BF.7040609@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com> <4A629734.2050700@zaimoni.com>
+	<4A8DB4CD.3080109@zaimoni.com> <4AA1E66E.4050203@zaimoni.com>
+	<4AB5C314.7060303@zaimoni.com> <4B0A51C2.3020501@zaimoni.com>
+	<4B7C122E.1080904@zaimoni.com> <4BB4E465.9000803@zaimoni.com>
+	<4BC10692.4060404@zaimoni.com> <4D3C965A.4030607@zaimoni.com>
+	<AANLkTimMcy6eS8VwbtjzN7S+ke=d+y69NeFifPRW=Fjn@mail.gmail.com>
+	<4D3D06BF.7040609@zaimoni.com>
+Message-ID: <AANLkTim3J25H=up+vZSxd4P5-G-SRmU8uT-YGYOBRBVm@mail.gmail.com>
+
+thanks Kenneth for the detailed information.
+In-fact, I have not fully understand all its meanings.
+
+BTW:
+The most difficult of parsing a c++ I think is the semantic check.
+
+Once I understand how to build it under mingw, I will try it soon. thanks.
+
+asmwarrior
+
+
+On Mon, Jan 24, 2011 at 12:57 PM, Kenneth Boyd <zaimoni at zaimoni.com> wrote:
+
+> On 1/23/2011 8:36 PM, asm warrior wrote:
+>
+>> Hi, I'm really confused about the current status of your compiler.
+>> From this page:
+>> http://zcplusplus.berlios.de/
+>> I see that the major work was on c_preprocessor?
+>>
+> Correct.  I did the slow-moving target in the standards first.  The C and
+> C++ preprocessors should be compliant, other than most of the standard
+> library headers are not implemented and an intolerance for uses of # and ##
+> operators that are doomed to error on macro instantiation.  [That error is
+> downgraded to a warning by --pedantic.]  Those headers that are implemented,
+> should be compliant.
+>
+> This preprocessor actively blocks attempts to #define keywords (indeed,
+> anything that the standards say would cause undefined behavior).  It doesn't
+> enforce reserved classes of identifiers yet (e.g., the reservation of
+> identifiers ending in _t in POSIX), but that is planned.  Likewise for
+> verifying what's going into the INT_.._C and UINT_.._C macro families in
+> stdint.h/cstdint (not enforced but scheduled).
+>
+> limits.h/climits, stdint.h/cstdint, and stddef.h/cstddef are generated
+> on-the-fly in response to the command-line options for target machine
+> properties.  When proper floating point support goes in, the implementation
+> specific headers for those are scheduled to be automatically generated as
+> well.
+>
+> iso646.h/ciso646 and stdbool.h/cstdbool are also available and working.
+>  #include <typeinfo> does nothing useful other than enable the extensions
+> for compile-time evaluation of operator == and != for the typeid operator,
+> and prevent erroring on the typeid operator.
+>
+>  Am I right?
+>>
+>> What's the status of C/C++ semantic analysis?
+>>
+> * Integer constant expressions should be evaluated at compile-time
+> according to target arithmetic.  This is largely inherited from the C
+> preprocessor's standard compliance.  (E.g., we will detect trapping
+> representations.]  If no options are used to specify target integer
+> representation, we assume Intel:
+> ** 8-bit char; sizeof(short)==2, sizeof(int)==4, sizeof(long)==4,
+> sizeof(long long)==8, char has same representation as unsigned char.
+> ** non-trapping two's-complement representation
+> * sizeof operator will work on integral and enumeration types, and string
+> literals.  The internal CPU model doesn't have the configuration for
+> floating point yet.
+> * Z.C++ does not error on run-time issues in the ternary operator ? : for
+> compile-time unevaluated expressions, as required by C99/C++0X.  E.g., (1 ?
+> 2 : 1/0) will not error or warn.
+> * enumeration support for C99/C++98 is as good as integer constant
+> expression support.  We do catch values going out of bounds, and
+> non-existence of base types in C++.  We do not handle the C++0X-specific
+> syntax yet.
+> * static assertion support [C _Static_Assert, C++ static_assert ] is as
+> good as enumeration and integer constant expression support.
+> * C++'s typeid operator is very minimally supported (we have an extension
+> to allow evaluating == and != at compile time to test the type system).
+>  More substantial uses actually requiring the class definition will fail.
+> * typedefs are parsed as well as the rest of the type system parsing.
+> * We have enough namespace support in C++ to typedef std::size_t , and do
+> basic declarations within namespaces.  Namespace aliases and C++0X inline
+> namespaces aren't implemented yet.
+>
+> Anything not mentioned above, should be assumed to be substantially
+> missing.
+> * Z.C++ 0.0.7 *recognizes* that a non-template class, struct, or union has
+> been defined fine, will allow declaring global variables using these types,
+> and will catch multiple definition errors, but will not parse the inside of
+> the definition worth anything.  The test case suite scheduled to go in next,
+> is to verify that things behave reasonably here.
+> * We do try to notice problems with duplicate storage classes (typedef,
+> extern, static, ...) on global variables.  We aren't clever enough to try to
+> guess C++0X vs. C++03 or earlier, and assume auto is a type rather than a
+> storage class as in C.
+> * Functions are not recognized at all (which forces pre-alpha status), and
+> blocks most of the standard headers pretty much completely.  Likewise for
+> templates.  Most of the invisible work in preparing for Z.C++ 0.0.7 was
+> improving the parser to be refactorable for this.
+> * Compile-time target-emulated floating point arithmetic hasn't been
+> implemented either.  Parsing of these expressions is not heavily tested, but
+> the infrastructure is intended to be there.
+>
+>
+>
+>> Also, I have working on windows + mingw.
+>> I'm still have now idea how to build this compiler, any document or
+>> instructions?
+>>
+> The build instructions on the home page http://zcplusplus.berlios.de/ need
+> a rewrite for clarity, then.
+>
+> Until the build system situation is fixed, you'll need to be on
+> Windows/MingW (with GNU make).  It should suffice to use either a source
+> release tarball or an SVN checkout.  Known-good versions of MingW are 3.4.x
+> and 4.3.x.  4.2.x *almost* works (it'll pass the test suites, but not work
+> so well if you want the built-in help interactively).  4.4.x and 4.5.x are
+> both known to fail when building the Windows-specific C memory manager, by
+> generating illegal assembly as an intermediate stage.  Fixing this is
+> relatively low priority, as these versions also fail to compile libjpeg and
+> libpng the same way.
+>
+> The build is in-source.  After making sure the Boost headers are installed
+> in a system directory, adjust the POSIX.inc files to control compiler
+> options. (defaults should give you a debug build), then invoke GNU make with
+> no parameters. from the top-level source directory [the one containing the
+> Zaimoni.STL directory and CSupport.cpp]  (I do so from the cmd.exe shell,
+> with a locally built make 3.8.1 .)
+>
+> To get the absolute paths to the Z.C++ system headers to work, you'll want
+> to adjust the INSTALL_TO macro in CPreproc.cpp .  [This may need relocating
+> to _version.h .]
+>
+> Kenneth
+>
+>
+>
+> _______________________________________________
+> Zcplusplus-dev mailing list
+> Zcplusplus-dev at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/zcplusplus-dev
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/zcplusplus-dev/attachments/20110126/33f1759f/attachment.html>
+

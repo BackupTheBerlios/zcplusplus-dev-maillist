@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Zcplusplus-dev] Z.C++ status report: September 20, 2009
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/zcplusplus-dev/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20September%2020%2C%202009&In-Reply-To=%3C4AB5C314.7060303%40zaimoni.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000005.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Zcplusplus-dev] Z.C++ status report: September 20, 2009</H1>
+    <B>Kenneth Boyd</B> 
+    <A HREF="mailto:zcplusplus-dev%40lists.berlios.de?Subject=Re%3A%20%5BZcplusplus-dev%5D%20Z.C%2B%2B%20status%20report%3A%20September%2020%2C%202009&In-Reply-To=%3C4AB5C314.7060303%40zaimoni.com%3E"
+       TITLE="[Zcplusplus-dev] Z.C++ status report: September 20, 2009">zaimoni at zaimoni.com
+       </A><BR>
+    <I>Sun Sep 20 07:52:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000005.html">[Zcplusplus-dev] Z.C++ status report: September 4, 2009
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To All Whom It May Concern,
+
+Z.C++ is now in stage one (new features).  A testable output format for 
+zcc has been implemented (source code transform).
+
+Reviewing the list of possible features:
+* Source-code reductions for some easy cases. sizeof operator and strlen 
+function on string literals come to mind, but a systematic review is in 
+order.
+* The __COUNTER__ macro extension is supported by all of GCC, CLang, and 
+MSVC.
+* The __INCLUDE_LEVEL__ macro extension is supported by GCC and CLang.
+* The __TIMESTAMP__ macro extension is supported by all of GCC, CLang, 
+and MSVC.
+* CLang has __has_builtin and __has_feature &quot;magic macros&quot;.
+* Checking the incoming tokens to the INT.._C and UINT..._C macros in 
+stdint.h/cstdint . (The standards requires a single unsuffixed integer 
+literal token.) This would use a new ZCC pragma.
+* Handle target CHAR_BIT!= host CHAR_BIT
+* Cross-platform floating point arithmetic emulation (this is starting 
+to look ugly, as comp.lang.fortran suggests there's quite a bit of 
+hardware out there that isn't even remotely close to IEEE)
+
+The following test case sets and features are of interest:
+* z_cpp: Random test driver for arithmetic.
+* pseudorandom regression test driver framework (currently in research 
+stage).
+* tools subdirectory: Redundancy is good. The Python helper scripts for 
+automatically forking the test cases can use replicas in other scripting 
+languages.
+
+Possibilities for feature creep include:
+* starting work on Fortran 66 support
+* Build a catalog of exotic hardware features to handle.
+* build in ISO mode.
+
+Best Regards,
+Kenneth Boyd
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000005.html">[Zcplusplus-dev] Z.C++ status report: September 4, 2009
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/zcplusplus-dev">More information about the Zcplusplus-dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,116 @@
+From zaimoni at zaimoni.com  Fri May 27 21:35:50 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Fri, 27 May 2011 14:35:50 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: May 27, 2011
+In-Reply-To: <4D3C965A.4030607@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>
+	<4BC10692.4060404@zaimoni.com> <4D3C965A.4030607@zaimoni.com>
+Message-ID: <4DDFFD16.50606@zaimoni.com>
+
+To All Whom It May Concern,
+
+Z.C++ is still in stage 1 (new features).  The next feature to go in 
+will be the compiler extension __zcc_linkage, which is a compile-time 
+constant operator much like the sizeof operator.
+
+Example syntax for an identifier: __zcc_linkage(size_t).  Legal values 
+tentatively are:
+-2: a bug prevented evaluating this properly.
+-1: the identifier has not been declared.
+0: the identifier has been declared, and has no linkage
+1: the identifier has been declared, and has internal linkage.
+2: the identifier has been declared, and has default external linkage.
+3: the identifier has been declared, and has external "C" linkage.
+
+I'm not sure whether the choices of 2 and 3 are reasonable; it may be 
+more reasonable to hard-code the languages, in which case 2 would be C 
+linkage and 3 would be C++ linkage.
+
+In C++, __zcc_linkage does take into account the current namespace and 
+attempts Koenig lookup; __zcc_linkage(std::size_t) should be evaluated 
+at compile-time.
+
+This extension is intended to make linkage testable by static 
+assertions.  The following would be expected to pass:
+
+#include <stddef.h>
+
+#if  9 <= 10000*__ZCC__ + 100*__ZCC_MINOR__ + __ZCC_PATCHLEVEL__
+#ifdef __cplusplus
+static_assert(0==__zcc_linkage(size_t));
+#else
+_Static_Assert(0==__zcc_linkage(size_t));
+#endif
+#endif
+
+Kenneth
+
+P.S.  All C99/C++0X compliance errors in z_cpp or zcc -E, not documented 
+as intentional, will block the release of Z.C++ 0.0.9.  Please report 
+such bugs immediately to zcplusplus-dev at lists.berlios.de .  Reduced test 
+cases would be appreciated.
+
+
+From zaimoni at zaimoni.com  Fri May 27 22:52:50 2011
+From: zaimoni at zaimoni.com (Kenneth Boyd)
+Date: Fri, 27 May 2011 15:52:50 -0500
+Subject: [Zcplusplus-dev] Z.C++ status report: May 27, 2011
+In-Reply-To: <4DDFFD16.50606@zaimoni.com>
+References: <4A3D5AEB.8030106@zaimoni.com>	<4A629734.2050700@zaimoni.com>	<4A8DB4CD.3080109@zaimoni.com>	<4AA1E66E.4050203@zaimoni.com>	<4AB5C314.7060303@zaimoni.com>	<4B0A51C2.3020501@zaimoni.com>	<4B7C122E.1080904@zaimoni.com>	<4BB4E465.9000803@zaimoni.com>
+	<4BC10692.4060404@zaimoni.com> <4D3C965A.4030607@zaimoni.com>
+	<4DDFFD16.50606@zaimoni.com>
+Message-ID: <4DE00F22.7000409@zaimoni.com>
+
+On 5/27/2011 2:35 PM, Kenneth Boyd wrote:
+> To All Whom It May Concern,
+>
+> Z.C++ is still in stage 1 (new features).  The next feature to go in 
+> will be the compiler extension __zcc_linkage, which is a compile-time 
+> constant operator much like the sizeof operator.
+>
+> Example syntax for an identifier: __zcc_linkage(size_t).  Legal values 
+> tentatively are:
+> -2: a bug prevented evaluating this properly.
+> -1: the identifier has not been declared.
+> 0: the identifier has been declared, and has no linkage
+> 1: the identifier has been declared, and has internal linkage.
+> 2: the identifier has been declared, and has default external linkage.
+> 3: the identifier has been declared, and has external "C" linkage.
+>
+> I'm not sure whether the choices of 2 and 3 are reasonable; it may be 
+> more reasonable to hard-code the languages, in which case 2 would be C 
+> linkage and 3 would be C++ linkage.
+>
+> In C++, __zcc_linkage does take into account the current namespace and 
+> attempts Koenig lookup; __zcc_linkage(std::size_t) should be evaluated 
+> at compile-time.
+>
+> This extension is intended to make linkage testable by static 
+> assertions.  The following would be expected to pass:
+>
+> #include <stddef.h>
+>
+> #if  9 <= 10000*__ZCC__ + 100*__ZCC_MINOR__ + __ZCC_PATCHLEVEL__
+> #ifdef __cplusplus
+> static_assert(0==__zcc_linkage(size_t));
+> #else
+> _Static_Assert(0==__zcc_linkage(size_t));
+> #endif
+> #endif
+Proofreading failure...obviously need a string literal above.
+
+#include <stddef.h>
+
+#if  9 <= 10000*__ZCC__ + 100*__ZCC_MINOR__ + __ZCC_PATCHLEVEL__
+#ifdef __cplusplus
+static_assert(0==__zcc_linkage(size_t),"size_t not defined or has 
+linkage");
+#else
+_Static_Assert(0==__zcc_linkage(size_t),"size_t not defined or has 
+linkage");
+#endif
+#endif
+
+Kenneth
+
+
